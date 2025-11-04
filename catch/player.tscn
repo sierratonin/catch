@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dipppo5mjxqu4"]
+[gd_scene load_steps=11 format=3 uid="uid://dipppo5mjxqu4"]
 
 [ext_resource type="Texture2D" uid="uid://dju5horcvpqqi" path="res://art/Characters/Basic Charakter Spritesheet.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://p40oefp25f4o" path="res://player.gd" id="1_onrkg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -9,22 +10,6 @@ region = Rect2(0, 0, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("1_4flbx")
 region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(0, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(48, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(96, 96, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
-atlas = ExtResource("1_4flbx")
-region = Rect2(144, 96, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
 atlas = ExtResource("1_4flbx")
@@ -57,23 +42,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hqtel")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sweqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2hs0m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1jxqw")
-}],
-"loop": true,
-"name": &"walk left",
-"speed": 3.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_dw050")
 }, {
 "duration": 1.0,
@@ -86,7 +54,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nvl01")
 }],
 "loop": true,
-"name": &"walk right",
+"name": &"walk",
 "speed": 3.0
 }]
 
@@ -95,13 +63,18 @@ radius = 30.0
 height = 80.0
 
 [node name="Player" type="Area2D"]
+script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(4.544426, 4.544426)
+position = Vector2(342.32068, 400.32068)
+scale = Vector2(8.888362, 8.888362)
 sprite_frames = SubResource("SpriteFrames_ivps1")
-animation = &"idle"
-frame_progress = 0.73395795
+animation = &"walk"
+frame_progress = 0.5783165
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(342.32068, 400.32068)
+scale = Vector2(1.760417, 1.760417)
 shape = SubResource("CapsuleShape2D_urp6f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

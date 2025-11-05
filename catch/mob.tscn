@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://1b27jpp352xw"]
+
+[ext_resource type="Texture2D" uid="uid://cqlbrclbmfn84" path="res://art/Objects/Basic Grass Biom things 1.png" id="1_dy6sc"]
+[ext_resource type="Script" uid="uid://bxk56x8676k22" path="res://mob.gd" id="1_nokgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nokgg"]
+atlas = ExtResource("1_dy6sc")
+region = Rect2(96, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ubaqv"]
+atlas = ExtResource("1_dy6sc")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p11y5"]
+atlas = ExtResource("1_dy6sc")
+region = Rect2(96, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5nov"]
+atlas = ExtResource("1_dy6sc")
+region = Rect2(112, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p11y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nokgg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ubaqv")
+}],
+"loop": true,
+"name": &"pink",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p11y5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5nov")
+}],
+"loop": true,
+"name": &"yellow",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ubaqv"]
+radius = 27.0
+height = 82.0
+
+[node name="mob" type="RigidBody2D"]
+collision_mask = 0
+script = ExtResource("1_nokgg")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(301, 33)
+scale = Vector2(9.441783, 9.441783)
+sprite_frames = SubResource("SpriteFrames_p11y5")
+animation = &"yellow"
+frame = 1
+frame_progress = 0.11209636
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(297.53427, 42.534264)
+rotation = 1.5707964
+scale = Vector2(1.3996055, 1.3996055)
+shape = SubResource("CapsuleShape2D_ubaqv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
